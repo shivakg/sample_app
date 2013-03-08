@@ -1,10 +1,18 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require "sprockets/railtie"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require *Rails.groups(:assets => %w(development test))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module SampleApp
   class Application < Rails::Application
@@ -38,5 +46,9 @@ module SampleApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+	config.assets.enabled = true
+	config.serve_static_assets = true
+	config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
+    config.assets.paths << Rails.root.join("app", "assets", "javascripts")
   end
 end

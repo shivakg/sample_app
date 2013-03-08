@@ -13,5 +13,8 @@ respond_to :html,:xml,:js
   
   def about
   end
+  
+  def contact
+  end
 
 end

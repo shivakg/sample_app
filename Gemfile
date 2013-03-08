@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'railties'
+gem 'bootstrap-sass','2.1'
+
 group :development, :test do
   gem 'rspec-rails'
 end
